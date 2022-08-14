@@ -1,0 +1,33 @@
+Ques--> 1295 (https://leetcode.com/problems/find-numbers-with-even-number-of-digits/)
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        int temp=0;
+        for(int i=0;i<nums.length;i++){
+            if(String.valueOf(nums[i]).length()%2==0){
+                temp++;
+            }
+        }
+        return temp;
+
+    }
+}
+
+Ques--> 1672 (https://leetcode.com/problems/richest-customer-wealth/)
+
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int temp=0;
+        int sum=0;
+        for(int i=0;i<accounts.length;i++){
+            for(int j=0;j<accounts[i].length;j++){
+                sum+=accounts[i][j];
+            }
+            if(sum>temp){
+                temp=sum;
+           }
+            sum=0;
+        }
+        return temp;
+    }
+}
