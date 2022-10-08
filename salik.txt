@@ -1,0 +1,45 @@
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.view.View
+import android.widget.*
+import android.widget.AdapterView.OnItemSelectedListener
+import androidx.core.view.isEmpty
+
+class Form : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_form)
+        var name=findViewById<EditText>(R.id.editTextTextPersonName7);
+        var password=findViewById<EditText>(R.id.editTextTextPassword);
+        var email=findViewById<EditText>(R.id.editTextTextEmailAddress);
+        var date=findViewById<EditText>(R.id.editTextDate);
+        var phone=findViewById<EditText>(R.id.editTextPhone);
+        var course=findViewById<Spinner>(R.id.spinner);
+        var text=findViewById<TextView>(R.id.textView7);
+
+        var arr= arrayOf("B.tech","MBA","BBA","MCA","HM");
+
+        if(course.isEmpty()){
+            var spin_adapter=ArrayAdapter(applicationContext,android.R.layout.simple_spinner_item,arr)
+            course.adapter=spin_adapter;
+        }
+        findViewById<Button>(R.id.button24).setOnClickListener(View.OnClickListener {
+            text.setText("Entered Values are \nName : "+name.text+"\nPassword : "
+                    +password.text+"\nEmail : "+email.text+"|| Date : "+date.text+
+            "\nPhone No : "+phone.text+" || Course : "+course.selectedItem)
+        })
+
+        course.onItemSelectedListener=object :OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                text.setText("Entered Values are \nName : "+name.text+"\nPassword : "
+                        +password.text+"\nEmail : "+email.text+"\n Date : "+date.text+
+                        "\nPhone No : "+phone.text+"\n Course : "+course.selectedItem)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
+    }
+}
